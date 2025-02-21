@@ -3,6 +3,10 @@ const addBtn = document.getElementById("add-task");
 const modal = document.getElementById("modal");
 const closs = document.getElementById("close");
 const add1 = document.getElementById("add1");
+const title = document.getElementById("title");
+const date = document.getElementById("date");
+const textArea = document.getElementById("text-area");
+
 
 const todos = [];
 
