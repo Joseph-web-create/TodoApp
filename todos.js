@@ -11,3 +11,9 @@ add1.addEventListener("click", () => {
   modal.classList.remove("hidden");
   modal.classList.add("flex");
 });
+
+closs.addEventListener("click", (e)=>{
+        e.preventDefault();
+        modal.classList.remove("flex");
+        modal.classList.add("hidden")
+})
