@@ -1,0 +1,10 @@
+:root{
+        --icon: #000000;
+        --bgheader: #878787;
+        --h1: 5rem;
+        --opa:#eeeeeeaa;
+}
+
+body{
+        font-family: serif;
+}
