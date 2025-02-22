@@ -18,7 +18,7 @@ const addtask = () =>{
         const taskObj = {
           id: `${titleInput.value
             .toLowerCase()
-            .split("")
+            .split(" ")
             .join("-")}-${date1.getTime()}
           `,
           title: titleInput.value,
@@ -27,17 +27,18 @@ const addtask = () =>{
           time: date1.getHours() + ":" + date1.getMinutes(),
         };
 
-        taskData.unshift(taskObj)
-        updatePage()
+        taskData.unshift(taskObj);
+        updatePage();
+        reset();
         console.log(taskObj);
 }
 
 const updatePage = () =>{
-        
+        container.innerHTML = "";
         taskData.forEach((task) =>{
                 container.innerHTML += `
-                <div class="p-3 rounded-[5px] bg-[#eeeeee]">
-                        <h2 class="text-[1.5rem] font-bold " id="${task.id}">${task.title}</h2>
+                <div class="p-3 rounded-[5px] bg-[#eeeeee]" id="${task.id}">
+                        <h2 class="text-[1.5rem] font-bold">${task.title}</h2>
                         <p class="text-[green] my-[10px]">Due date: ${task.dueDate}</p>
 
                         <h2 class="font-bold mb-[5px]">Description</h2>
@@ -52,6 +53,12 @@ const updatePage = () =>{
 
         modal.classList.remove("flex");
         modal.classList.add("hidden");
+}
+
+const reset = () =>{
+        titleInput.value = "";
+        dateInput.value = "";
+        textArea.value = "";
 }
 
 console.log(taskData)
@@ -70,5 +77,4 @@ closs.addEventListener("click", ()=>{
 
 taskForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  
 });
