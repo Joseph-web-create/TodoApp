@@ -7,10 +7,11 @@ const add1 = document.getElementById("add1");
 const titleInput = document.getElementById("titleinput");
 const dateInput = document.getElementById("dateinput");
 const textArea = document.getElementById("text-area");
-
+const deletedDiv = document.getElementById("deleted-div");
+const hddnBtn = document.getElementById("hidden-btn")
 
 const taskData = [];
-
+const deletedData = [];
 
 const addtask = () =>{
         const date1 = new Date();
@@ -30,7 +31,6 @@ const addtask = () =>{
         taskData.unshift(taskObj);
         updatePage();
         reset();
-        console.log(taskObj);
 }
 
 const updatePage = () =>{
@@ -46,7 +46,7 @@ const updatePage = () =>{
                         <div class="flex   justify-between items-center mt-[8px]">
                                 <h3 class="bg-[var(--bgheader)] p-2 rounded-[5px] text-[white]">Time: ${task.time}</h3>
                                 <button class="bg-red-400 p-2 w-[100px] hover:bg-red-200 rounded-[5px]
-                                text-[white] cursor-pointer" onclick="deleteTask(this)">Delete</button>
+                                text-[white] cursor-pointer" onclick="deleteTaskBtn(this)">Delete</button>
                         </div>
                 </div>`;
         })
@@ -55,13 +55,23 @@ const updatePage = () =>{
         modal.classList.add("hidden");
 }
 
+const deleteTaskBtn = (ele) =>{
+        const findId = taskData.findIndex(task => task.id === ele.parentElement.id)
+        deletedData.unshift(taskData.splice(findId, 1));
+        ele.parentElement.remove()
+        updatePage()
+        if(deletedData.length){
+                hddnBtn.classList.remove("hidden");
+        }
+}
+
+console.log(deletedData);
+
 const reset = () =>{
         titleInput.value = "";
         dateInput.value = "";
         textArea.value = "";
 }
-
-console.log(taskData)
 
 addBtn.addEventListener("click", addtask);
 
