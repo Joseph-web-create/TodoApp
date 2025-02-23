@@ -9,7 +9,6 @@ const dateInput = document.getElementById("dateinput");
 const textArea = document.getElementById("text-area");
 
 const taskData = [];
-const deletedData1 = JSON.parse(localStorage.getItem("data")) || [];
 
 const addtask = () => {
   const date1 = new Date();
@@ -74,11 +73,9 @@ addBtn.addEventListener("click", addtask);
 
 add1.addEventListener("click", () => {
   modal.classList.remove("hidden");
-  modal.classList.add("flex");
 });
 
 closs.addEventListener("click", () => {
-  modal.classList.remove("flex");
   modal.classList.add("hidden");
 });
 

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
+
 :root{
         --icon: #000000;
         --bgheader: #878787;
@@ -8,4 +10,8 @@
 
 body{
         font-family: serif;
+}
+
+p{
+        font-family: "Inconsolata", serif;;
 }
