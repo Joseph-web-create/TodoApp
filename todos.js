@@ -48,18 +48,14 @@ const updatePage = () => {
                 </div>`;
   });
 
-  modal.classList.remove("flex");
-  modal.classList.add("hidden");
+  modal.style.display = "none"
 };
 
 const deleteTaskBtn = (ele) => {
   const findId = taskData.findIndex((task) => task.id === ele.parentElement.id);
-  deletedData1.unshift(taskData.splice(findId, 1));
+  taskData.splice(findId, 1)
   ele.parentElement.remove();
   updatePage();
-  if (deletedData1.length) {
-    hddnBtn.classList.remove("hidden");
-  }
 };
 
 
@@ -72,11 +68,11 @@ const reset = () => {
 addBtn.addEventListener("click", addtask);
 
 add1.addEventListener("click", () => {
-  modal.classList.remove("hidden");
+  modal.style.display = "flex"
 });
 
 closs.addEventListener("click", () => {
-  modal.classList.add("hidden");
+  modal.style.display = "none"
 });
 
 taskForm.addEventListener("submit", (e) => {
