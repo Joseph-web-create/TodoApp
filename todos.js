@@ -13,6 +13,16 @@ const taskData = [];
 const addtask = () => {
   const date1 = new Date();
 
+  if (
+    titleInput.value.trim() === "" ||
+    dueDate.value === "" ||
+    textArea.value.trim() === ""
+  ) {
+    alert(`Input field's are empty enter your input's`);
+    modal.style.display = "none";
+    return;
+  }
+
   const taskObj = {
     id: `${titleInput.value
       .toLowerCase()
@@ -48,16 +58,15 @@ const updatePage = () => {
                 </div>`;
   });
 
-  modal.style.display = "none"
+  modal.style.display = "none";
 };
 
 const deleteTaskBtn = (ele) => {
   const findId = taskData.findIndex((task) => task.id === ele.parentElement.id);
-  taskData.splice(findId, 1)
+  taskData.splice(findId, 1);
   ele.parentElement.remove();
   updatePage();
 };
-
 
 const reset = () => {
   titleInput.value = "";
@@ -65,14 +74,15 @@ const reset = () => {
   textArea.value = "";
 };
 
+
 addBtn.addEventListener("click", addtask);
 
 add1.addEventListener("click", () => {
-  modal.style.display = "flex"
+  modal.style.display = "flex";
 });
 
 closs.addEventListener("click", () => {
-  modal.style.display = "none"
+  modal.style.display = "none";
 });
 
 taskForm.addEventListener("submit", (e) => {
