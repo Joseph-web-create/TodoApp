@@ -1,38 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Zen+Dots&display=swap");
 
-:root{
-        --icon: #000000;
-        --bgheader: #878787;
-        --h1: 5rem;
-        --opa:#eeeeeeaa;
-        --form: #000000c1;
+:root {
+  --icon: #000000;
+  --bgheader: #878787;
+  --h1: 5rem;
+  --opa: #eeeeeeaa;
+  --form: #000000c1;
 }
 
-body{
-        font-family: serif;
+body {
+  font-family: serif;
 }
 
-main{
-        position: relative;
+main {
+  position: relative;
 }
 
-p{
-        font-family: "Inconsolata", serif;;
+p {
+  font-family: "Inconsolata", serif;
+}
+
+h2 {
+  font-family: "Zen Dots", serif;
 }
 
 /* class="none flex items-center justify-center absolute h-[100vh] max-h-[100vh] w-[100%] bg-[var(--opa)] top-0  bg-opacity-[1] text-[white] p-4 hidden z-[1000]" */
 
-.none{
-        display: none;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-        height: calc(100vh - 4.8rem);
-        background-color: var(--opa);
-        z-index: 100;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto;
-        color: white;
+.none {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: calc(100vh - 4.8rem);
+  background-color: var(--opa);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  color: white;
 }
