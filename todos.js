@@ -8,14 +8,14 @@ const titleInput = document.getElementById("titleinput");
 const dateInput = document.getElementById("dateinput");
 const textArea = document.getElementById("text-area");
 
-const taskData = [];
+const taskData = JSON.parse(localStorage.getItem("Mydata")) || [];
 
 const addtask = () => {
   const date1 = new Date();
 
   if (
     titleInput.value.trim() === "" ||
-    dueDate.value === "" ||
+    dateInput.value === "" ||
     textArea.value.trim() === ""
   ) {
     alert(`Input field's are empty enter your input's`);
@@ -36,27 +36,31 @@ const addtask = () => {
   };
 
   taskData.unshift(taskObj);
+
+  localStorage.setItem("Mydata", JSON.stringify(taskData));
+
   updatePage();
   reset();
 };
 
 const updatePage = () => {
-  container.innerHTML = "";
-  taskData.forEach((task) => {
-    container.innerHTML += `
-                <div class="p-3 rounded-[5px] bg-[#eeeeee]" id="${task.id}">
-                        <h2 class="text-[1.5rem] font-bold">${task.title}</h2>
-                        <p class="text-[green] my-[10px]">Due date: ${task.dueDate}</p>
-
-                        <h2 class="font-bold mb-[5px]">Description</h2>
-                        <p>${task.textArea}</p>
-                        <div class="flex   justify-between items-center mt-[8px]">
-                                <h3 class="bg-[var(--bgheader)] p-2 rounded-[5px] text-[white]">Time: ${task.time}</h3>
-                                <button class="bg-red-400 p-2 w-[100px] hover:bg-red-200 rounded-[5px]
-                                text-[white] cursor-pointer" onclick="deleteTaskBtn(this)">Delete</button>
-                        </div>
-                </div>`;
-  });
+  container.innerHTML = taskData
+    .map(
+      (task) => `
+    <div class="p-3 rounded-[5px] bg-[#eeeeee] w-[100%]" id="${task.id}">
+      <h2 class="text-[1.5rem] font-bold">${task.title}</h2>
+      <p class="text-[green] my-[10px]">Due date: ${task.dueDate}</p>
+      <h2 class="font-bold mb-[5px]">Description</h2>
+      <p>${task.textArea}</p>
+      <div class="flex justify-between items-center mt-[8px]">
+        <h3 class="bg-[var(--bgheader)] p-2 rounded-[5px] text-[white]">Time: ${task.time}</h3>
+        <button class="bg-red-400 p-2 w-[100px] hover:bg-red-200 rounded-[5px] text-[white] cursor-pointer" 
+          onclick="deleteTaskBtn(this)">Delete</button>
+      </div>
+    </div>
+  `
+    )
+    .join("");
 
   modal.style.display = "none";
 };
@@ -65,6 +69,7 @@ const deleteTaskBtn = (ele) => {
   const findId = taskData.findIndex((task) => task.id === ele.parentElement.id);
   taskData.splice(findId, 1);
   ele.parentElement.remove();
+  localStorage.setItem("Mydata", JSON.stringify(taskData));
   updatePage();
 };
 
@@ -73,7 +78,6 @@ const reset = () => {
   dateInput.value = "";
   textArea.value = "";
 };
-
 
 addBtn.addEventListener("click", addtask);
 
@@ -88,3 +92,5 @@ closs.addEventListener("click", () => {
 taskForm.addEventListener("submit", (e) => {
   e.preventDefault();
 });
+
+document.addEventListener("DOMContentLoaded", updatePage);
